@@ -9,6 +9,7 @@ python = "^3.10"
 aiogram = "^2.21"
 python-decouple = "^3.6"
 loguru = "^0.6.0"
+validators = "^0.20.0"
 
 [tool.poetry.dev-dependencies]
 
