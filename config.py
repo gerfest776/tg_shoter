@@ -4,6 +4,7 @@ from loguru import logger
 
 class Settings:
     API_TOKEN = decouple.config("TELEGRAM_API_TOKEN")
+    ADMIN = decouple.config("ADMIN")
 
     PG_DB = decouple.config("DB_NAME")
     PG_HOST = decouple.config("DB_HOST")
