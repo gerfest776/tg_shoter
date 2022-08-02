@@ -1,2 +1,22 @@
 .idea
 .env
+__pycache__/
+*.py[cod]
+*.so
+
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+/media/temp

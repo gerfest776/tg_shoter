@@ -1,0 +1,19 @@
+version: "3.10"
+
+x-settings:
+  &global
+  environment:
+    - API_TOKEN=${API_TOKEN_test}
+    - ADMIN=${ADMIN}
+
+
+services:
+  bot:
+    build:
+      context: .
+      dockerfile: docker/app.Dockerfile
+    container_name: tgbot
+    restart: always
+    <<: *global
+    ports:
+      - "6080:8000"
