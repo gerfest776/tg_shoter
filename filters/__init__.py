@@ -1,8 +1,7 @@
 from aiogram import Dispatcher
 from loguru import logger
 
-from .chat_filter import IsGroup
-from .chat_filter import IsPrivate
+from .chat_filter import IsGroup, IsPrivate
 
 
 def setup(dp: Dispatcher):

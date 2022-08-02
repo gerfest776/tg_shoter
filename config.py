@@ -14,7 +14,7 @@ class Settings:
 
     @classmethod
     def get_db_connection_data(cls):
-        return {k[3:].lower(): v for k, v in cls.__dict__.items() if k[:3] == 'PG_'}
+        return {k[3:].lower(): v for k, v in cls.__dict__.items() if k[:3] == "PG_"}
 
 
 settings = Settings()
