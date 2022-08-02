@@ -6,11 +6,11 @@ class Settings:
     API_TOKEN = decouple.config("API_TOKEN")
     ADMIN = decouple.config("ADMIN")
 
-    # PG_DB = decouple.config("DB_NAME")
-    # PG_HOST = decouple.config("DB_HOST")
-    # PG_PORT = decouple.config("DB_PORT")
-    # PG_USER = decouple.config("DB_USER")
-    # PG_PASSWORD = decouple.config("DB_PASSWORD")
+    PG_NAME = decouple.config("PG_NAME")
+    PG_HOST = decouple.config("PG_HOST")
+    PG_PORT = decouple.config("PG_PORT")
+    PG_USER = decouple.config("PG_USER")
+    PG_PASSWORD = decouple.config("PG_PASSWORD")
 
     @classmethod
     def get_db_connection_data(cls):

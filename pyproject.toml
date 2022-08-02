@@ -12,6 +12,7 @@ loguru = "^0.6.0"
 validators = "^0.20.0"
 pyppeteer = "^1.0.2"
 pre-commit = "^2.20.0"
+asyncpg = "^0.26.0"
 
 [tool.poetry.dev-dependencies]
 
