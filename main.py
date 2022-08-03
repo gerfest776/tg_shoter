@@ -1,3 +1,6 @@
+from core.db.tables import database
+
+
 async def on_startup(dp):
     import filters
 
@@ -6,6 +9,7 @@ async def on_startup(dp):
     from utils.admin_notify import on_startup_notify
 
     await on_startup_notify(dp)
+    await database.init_database()
 
 
 if __name__ == "__main__":

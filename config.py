@@ -9,12 +9,12 @@ class Settings:
     PG_NAME = decouple.config("PG_NAME")
     PG_HOST = decouple.config("PG_HOST")
     PG_PORT = decouple.config("PG_PORT")
-    PG_USER = decouple.config("PG_USER")
-    PG_PASSWORD = decouple.config("PG_PASSWORD")
+    APG_USER = decouple.config("PG_USER")
+    APG_PASSWORD = decouple.config("PG_PASSWORD")
 
     @classmethod
     def get_db_connection_data(cls):
-        return {k[3:].lower(): v for k, v in cls.__dict__.items() if k[:3] == "PG_"}
+        return {k[4:].lower(): v for k, v in cls.__dict__.items() if k[:3] == "APG"}
 
 
 settings = Settings()
