@@ -19,9 +19,6 @@ RUN apt-get update \
     && rm -rf /root/.cache/pip \
 
 
-RUN groupadd chrome && useradd -g chrome -s /bin/bash -G audio,video chrome \
-    && mkdir -p /home/chrome && chown -R chrome:chrome /home/chrome
-
 COPY . /app
 WORKDIR /app
 

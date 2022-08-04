@@ -37,8 +37,6 @@ services:
       - "6080:8000"
     depends_on:
       - db
-    cap_add:
-      - SYS_ADMIN
 
 volumes:
   postgres_data:
