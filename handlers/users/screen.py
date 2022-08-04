@@ -30,7 +30,7 @@ async def handle_link_message(msg: types.Message):
             InlineKeyboardButton(text="Page WHOIS", callback_data="page_details_users")
         )
         file = InputMedia(
-            media=InputFile(await Screener(msg.text).screen_page()),
+            media=InputFile(await Screener(msg.text, msg.from_id).screen_page()),
             caption=f"Your screenshot!\n\n{msg.text}\n\nTime of processing: {round(time.time()-st)} seconds",
         )
         await mess.edit_media(file, reply_markup)

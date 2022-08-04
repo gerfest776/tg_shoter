@@ -5,6 +5,10 @@ from config import settings
 
 
 class RawConnection:
+    """
+    class parent, which gives interface of pool connection
+    """
+
     connection_pool = None
 
     @staticmethod
