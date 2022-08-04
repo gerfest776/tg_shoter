@@ -10,23 +10,27 @@ class RawConnection:
     @staticmethod
     async def make_request(
         sql: str,
+        params: tuple | list[tuple] | None = None,
         retries_count: int = 5,
         fetch: bool = False,
     ):
         if RawConnection.connection_pool is None:
             RawConnection.connection_pool = await asyncpg.create_pool(
-                **settings.get_db_connection_data(), command_timeout=60
+                **settings.get_db_connection_data()
             )
-            async with RawConnection.connection_pool.acquire() as conn:
-                conn: asyncpg.Connection
-                for _ in range(retries_count):
-                    try:
-                        await conn.execute(sql)
-                    except Exception as e:
-                        logger.error(e)
+        async with RawConnection.connection_pool.acquire() as conn:
+            conn: asyncpg.Connection
+            for _ in range(retries_count):
+                try:
+                    if params:
+                        await conn.execute(sql, *params)
                     else:
-                        break
-                if fetch:
-                    return await conn.fetch(sql)
+                        await conn.execute(sql)
+                except Exception as e:
+                    logger.error(e)
                 else:
-                    await RawConnection.connection_pool.release(conn)
+                    break
+            if fetch:
+                return await conn.fetchrow(sql, *params)
+            else:
+                await RawConnection.connection_pool.release(conn)

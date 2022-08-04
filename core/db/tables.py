@@ -5,11 +5,11 @@ class DatabaseTables(RawConnection):
     @staticmethod
     async def create_whois_table():
         sql = """CREATE TABLE IF NOT EXISTS whois(
-            message_id BIGINT PRIMARY KEY,
-            ip VARCHAR(20),
+            id SERIAL PRIMARY KEY,
+            ip INET UNIQUE,
+            url VARCHAR(256) UNIQUE,
             country VARCHAR(50),
             city VARCHAR(100),
-            provider VARCHAR(100),
             organization VARCHAR(100));
             """
         await DatabaseTables.make_request(sql)
