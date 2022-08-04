@@ -26,15 +26,17 @@ services:
     <<: *global
 
 
-#  bot:
-#    build:
-#      context: .
-#      dockerfile: docker/app.Dockerfile
-#    container_name: tgbot
-#    restart: always
-#    <<: *global
-#    ports:
-#      - "6080:8000"
+  bot:
+    build:
+      context: .
+      dockerfile: app.Dockerfile
+    container_name: tgbot
+    restart: always
+    <<: *global
+    ports:
+      - "6080:8000"
+    depends_on:
+      - db
 
 volumes:
   postgres_data:
