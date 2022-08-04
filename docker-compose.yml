@@ -3,7 +3,7 @@ version: "3.10"
 x-settings:
   &global
   environment:
-    - API_TOKEN=${API_TOKEN_test}
+    - API_TOKEN=${API_TOKEN}
     - ADMIN=${ADMIN}
     - POSTGRES_USER=${POSTGRES_USER}
     - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}

@@ -7,7 +7,7 @@ class Settings:
     ADMIN = decouple.config("ADMIN")
 
     PG_NAME = decouple.config("PG_NAME")
-    PG_HOST = decouple.config("PG_HOST")
+    APG_HOST = decouple.config("PG_HOST")
     PG_PORT = decouple.config("PG_PORT")
     APG_USER = decouple.config("PG_USER")
     APG_PASSWORD = decouple.config("PG_PASSWORD")
