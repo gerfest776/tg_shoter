@@ -1,10 +1,10 @@
-FROM python:3.8-slim-buster
+FROM python:3.10-slim-buster
 
 WORKDIR /app
 COPY poetry.lock pyproject.toml /app/
 
 
-RUN apt-get update && apt-get install gcc, g++ \
+RUN apt-get update && apt-get -y install gcc g++ \
     && pip install --upgrade pip poetry \
     && poetry config virtualenvs.create false \
     && poetry install --no-dev \
