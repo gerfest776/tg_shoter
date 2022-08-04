@@ -19,4 +19,3 @@ var/
 .installed.cfg
 *.egg
 
-media/temp/*
