@@ -7,7 +7,6 @@ RUN apt-get update && apt-get install curl gnupg -y \
   && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
   && apt-get update \
   && apt-get install google-chrome-stable -y --no-install-recommends \
-  \
 
 WORKDIR /app
 COPY poetry.lock pyproject.toml /app/
