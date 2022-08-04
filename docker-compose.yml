@@ -24,6 +24,8 @@ services:
     ports:
       - "5432:5432"
     <<: *global
+    cap_add:
+      - SYS_ADMIN
 
 
   bot:
@@ -34,11 +36,9 @@ services:
     restart: always
     <<: *global
     ports:
-      - "6080:8000"
+      - "8000:8000/udp"
     depends_on:
       - db
-    cap_add:
-      - SYS_ADMIN
 
 volumes:
   postgres_data:
