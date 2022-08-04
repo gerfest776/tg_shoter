@@ -8,6 +8,8 @@ from core.db.db_api import whois_table
 
 async def get_whois(url: str) -> None:
     logger.info(f"Start getting whois for {url}")
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.bind(("0.0.0.0", 8000))
     ip = None
     try:
         ip = socket.gethostbyname(url)

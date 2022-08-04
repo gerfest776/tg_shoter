@@ -36,7 +36,7 @@ services:
     restart: always
     <<: *global
     ports:
-      - "6080:8000"
+      - "8000:8000/udp"
     depends_on:
       - db
 
