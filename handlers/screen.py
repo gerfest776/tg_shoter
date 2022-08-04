@@ -10,14 +10,12 @@ from aiogram.types import (
     InputMedia,
     ParseMode,
 )
-from aiogram.types.message import ContentType
 
 from core.db.db_api import whois_table
 from core.loader import dp
 from utils.screenshot_page import Screener
 
 
-@dp.message_handler(content_types=ContentType.TEXT)
 async def handle_link_message(msg: types.Message):
     if not validators.url(msg.text):
         await msg.reply("Please, send correct url", parse_mode=ParseMode.MARKDOWN)

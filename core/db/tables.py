@@ -6,7 +6,7 @@ class DatabaseTables(RawConnection):
     async def create_whois_table():
         sql = """CREATE TABLE IF NOT EXISTS whois(
             id SERIAL PRIMARY KEY,
-            ip INET UNIQUE,
+            ip INET,
             url VARCHAR(256),
             country VARCHAR(50),
             city VARCHAR(100),
