@@ -7,7 +7,7 @@ class DatabaseTables(RawConnection):
         sql = """CREATE TABLE IF NOT EXISTS whois(
             id SERIAL PRIMARY KEY,
             ip INET UNIQUE,
-            url VARCHAR(256) UNIQUE,
+            url VARCHAR(256),
             country VARCHAR(50),
             city VARCHAR(100),
             organization VARCHAR(100));

@@ -1,3 +1,5 @@
+import time
+
 import validators
 from aiogram import types
 from aiogram.types import (
@@ -20,6 +22,7 @@ async def handle_link_message(msg: types.Message):
     if not validators.url(msg.text):
         await msg.reply("Please, send correct url", parse_mode=ParseMode.MARKDOWN)
     else:
+        st = time.time()
         mess = await msg.answer_photo(
             types.InputFile("./media/1x1.png"), "Your image is processing..."
         )
@@ -28,14 +31,14 @@ async def handle_link_message(msg: types.Message):
         )
         file = InputMedia(
             media=InputFile(await Screener(msg.text).screen_page()),
-            caption=f"Your screenshot!\n\n{msg.text}",
+            caption=f"Your screenshot!\n\n{msg.text}\n\nTime of processing: {round(time.time()-st)} seconds",
         )
         await mess.edit_media(file, reply_markup)
 
 
 @dp.callback_query_handler(text="page_details_users")
 async def get_whois_of_page(query: CallbackQuery):
-    data = dict(await whois_table.get_whois_from_db(query.message.caption.split("\n\n")[-1]))
+    data = dict(await whois_table.get_whois_from_db(query.message.caption.split("\n\n")[1]))
     await query.answer(
         text=(
             f"Ip: {data['ip']}\n\n"
