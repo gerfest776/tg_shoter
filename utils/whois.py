@@ -8,7 +8,7 @@ from core.db.db_api import whois_table
 
 async def get_whois(url: str) -> None:
     logger.info(f"Start getting whois for {url}")
-
+    ip = None
     try:
         ip = socket.gethostbyname(url)
     except Exception as e:
