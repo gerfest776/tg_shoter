@@ -1,7 +1,7 @@
 import asyncpg
 from loguru import logger
 
-from config import settings
+from core.config import settings
 
 
 class RawConnection:

@@ -2,7 +2,7 @@ import logging
 
 from aiogram import Dispatcher
 
-from config import settings
+from core.config import settings
 
 
 async def on_startup_notify(dp: Dispatcher):
