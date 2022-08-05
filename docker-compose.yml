@@ -24,9 +24,6 @@ services:
     ports:
       - "5432:5432"
     <<: *global
-    cap_add:
-      - SYS_ADMIN
-
 
   bot:
     build:
