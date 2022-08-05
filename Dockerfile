@@ -9,6 +9,12 @@ RUN apt-get update \
                            --no-install-recommends
     \
 
+RUN pip install --upgrade pip poetry \
+    && poetry config virtualenvs.create false \
+    && poetry install --no-dev \
+    && rm -rf /root/.cache/pip
+    \
+
 RUN curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
     && apt-get update && apt-get install -y \
@@ -18,11 +24,6 @@ RUN curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - 
     && mkdir -p /home/chrome && chown -R chrome:chrome /home/chrome
     \
 
-RUN pip install --upgrade pip poetry \
-    && poetry config virtualenvs.create false \
-    && poetry install --no-dev \
-    && rm -rf /root/.cache/pip
-    \
 
 COPY . /app
 WORKDIR /app
