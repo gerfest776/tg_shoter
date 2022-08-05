@@ -1,6 +1,5 @@
 import time
 
-import validators
 from aiogram import types
 from aiogram.types import (
     CallbackQuery,
@@ -8,7 +7,6 @@ from aiogram.types import (
     InlineKeyboardMarkup,
     InputFile,
     InputMedia,
-    ParseMode,
 )
 
 from core.db.db_api import whois_table
@@ -17,21 +15,16 @@ from utils.screenshot_page import Screener
 
 
 async def handle_link_message(msg: types.Message):
-    if not validators.url(msg.text):
-        await msg.reply("Please, send correct url", parse_mode=ParseMode.MARKDOWN)
-    else:
-        st = time.time()
-        mess = await msg.answer_photo(
-            types.InputFile("./media/1x1.png"), "Your image is processing..."
-        )
-        reply_markup = InlineKeyboardMarkup().add(
-            InlineKeyboardButton(text="Page WHOIS", callback_data="page_details_users")
-        )
-        file = InputMedia(
-            media=InputFile(await Screener(msg.text, msg.from_id).screen_page()),
-            caption=f"Your screenshot!\n\n{msg.text}\n\nTime of processing: {round(time.time()-st)} seconds",
-        )
-        await mess.edit_media(file, reply_markup)
+    st = time.time()
+    mess = await msg.answer_photo(types.InputFile("./media/1x1.png"), "Your image is processing...")
+    reply_markup = InlineKeyboardMarkup().add(
+        InlineKeyboardButton(text="Page WHOIS", callback_data="page_details_users")
+    )
+    file = InputMedia(
+        media=InputFile(await Screener(msg.text, msg.from_id).screen_page()),
+        caption=f"Your screenshot!\n\n{msg.text}\n\nTime of processing: {round(time.time()-st)} seconds",
+    )
+    await mess.edit_media(file, reply_markup)
 
 
 @dp.callback_query_handler(text="page_details_users")
