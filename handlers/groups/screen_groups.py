@@ -25,6 +25,6 @@ async def handle_link_message_groups(msg: types.Message):
 @dp.callback_query_handler(text="help_in_groups")
 async def get_whois_of_page(query: CallbackQuery):
     await query.answer(
-        text="Just send me a link to get screenshot of your page!",
+        text="Just send me a link to get screenshot of your page!\nUse: /screen *url*",
         show_alert=True,
     )
