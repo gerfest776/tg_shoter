@@ -9,4 +9,4 @@ class IsGroup(BoundFilter):
 
 class IsPrivate(BoundFilter):
     async def check(self, message: types.Message):
-        return message.chat.type == types.ChatType.PRIVATE
+        return message.chat.type in (types.ChatType.PRIVATE,)
