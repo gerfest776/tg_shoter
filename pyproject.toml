@@ -35,14 +35,15 @@ max-line-length = 101
 
 
 [tool.pytest.ini_options]
-API_TOKEN = "5469389176:AAHzDrJXdWAuvCEBFIbVgaLkfF_ue-K3KEs"
-ADMIN = 412199751
-
-PG_NAME = "tgshot"
-PG_USER = "tgshot"
-PG_PASSWORD = "tgshot"
-PG_HOST = "db"
-PG_PORT = 5432
-POSTGRES_PASSWORD = "tgshot"
-POSTGRES_USER = "tgshot"
-POSTGRES_DB = "tgshot"
+env = [
+    "API_TOKEN = 5469389176:AAHzDrJXdWAuvCEBFIbVgaLkfF_ue-K3KEs",
+    "ADMIN = 412199751",
+    "PG_NAME = tgshot",
+    "PG_USER = tgshot",
+    "PG_PASSWORD = tgshot",
+    "PG_HOST = db",
+    "PG_PORT = 5432",
+    "POSTGRES_PASSWORD = tgshot",
+    "POSTGRES_USER = tgshot",
+    "POSTGRES_DB = tgshot"
+]
