@@ -55,7 +55,7 @@ jobs:
       - name: Install MyPy
         run: pip install mypy
       - name: Run MyPy
-        run: mypy main
+        run: ls -la
 
 
 
