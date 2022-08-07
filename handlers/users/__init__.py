@@ -1,5 +1,5 @@
-from .help import dp as dp_help
-from .start import dp as dp_start
-from .screen_users import dp as dp_users
+from .help import dp  # noqa F811
+from .start import dp  # noqa F811
+from .screen_users import dp  # noqa F811
 
-__all__ = [dp_help, dp_start, dp_users]
+__all__ = ["dp"]

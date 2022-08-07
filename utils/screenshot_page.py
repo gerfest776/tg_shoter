@@ -11,8 +11,6 @@ def url_to_filename(url: str):
     return url.split("//")[1].split(".")[0]
 
 
-
-
 class Screener:
     def __init__(self, url: str, user_id: int):
         self.url = url
@@ -25,12 +23,14 @@ class Screener:
         """
         logger.info(f"Start screen url page {self.url}")
         browser = await launch(
-            executablePath="/usr/bin/google-chrome-stable", headless=True, args=["--no-sandbox"]
+            executablePath="/usr/bin/google-chrome-stable",
+            headless=True,
+            args=["--no-sandbox"],
         )
         page = await browser.newPage()
         await page.setViewport({"width": 1280, "height": 1280, "deviceScaleFactor": 0})
         await page.goto(self.url)
-        path = f"./media/temp/{date.today()}-{self.user_id}-{url_to_filename(self.url)}.png"
+        path = f"./media/temp/{date.today()}" f"-{self.user_id}" f"-{url_to_filename(self.url)}.png"
         await asyncio.sleep(1)
         try:
             await page.screenshot(

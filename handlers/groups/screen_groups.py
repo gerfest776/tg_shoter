@@ -16,7 +16,9 @@ async def handle_link_message_groups(msg: types.Message):
             InlineKeyboardButton(text="What i am able to?", callback_data="help_in_groups")
         )
         await msg.reply(
-            "Please, send correct url", parse_mode=ParseMode.MARKDOWN, reply_markup=reply_markup
+            "Please, send correct url",
+            parse_mode=ParseMode.MARKDOWN,
+            reply_markup=reply_markup,
         )
     else:
         await handle_link_message(msg)
