@@ -3,7 +3,7 @@ from loguru import logger
 
 
 class Settings:
-    API_TOKEN = decouple.config("API_TOKEN")
+    API_TOKEN = decouple.config("API_TOKEN", "test")
     ADMIN = decouple.config("ADMIN")
 
     PG_NAME = decouple.config("PG_NAME")
