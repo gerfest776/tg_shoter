@@ -17,7 +17,7 @@ jobs:
           python-version: '3.10'
           architecture: x64
       - name: Checkout the latest code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v1
       - name: Install black
         run: pip install black
       - name: Checking...
@@ -34,7 +34,7 @@ jobs:
           python-version: '3.10'
           architecture: x64
       - name: Checkout the latest code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v1
       - name: Install flake8
         run: pip install flake8
       - name: Run flake8
