@@ -34,3 +34,22 @@ include = '\.pyi?$'
 ignore = "F811"
 max-line-length = 101
 
+[tool.isort]
+profile = "black"
+skip = [".gitignore", ".dockerignore"]
+
+[tool.pytest.ini_options]
+python_files = "test_*.py"
+testpaths = "tests"
+pythonpath = "."
+env = [
+    "DEBUG = True",
+    "D:DATABASE_HOST = db",
+    "D:DATABASE_PORT = 5432",
+    "D:DATABASE_NAME = bbbatscale",
+    "D:DATABASE_USER = bbbatscale",
+    "D:DATABASE_PASSWORD = bbbatscalepassword",
+    "D:REDIS_HOST = redis",
+    "D:REDIS_PORT = 6379",
+    "SECRET_KEY = CHANGE-IT-BEFORE-FIRST-DEPLOYMENT"
+]
