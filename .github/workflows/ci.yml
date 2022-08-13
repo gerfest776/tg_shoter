@@ -2,22 +2,14 @@ name: deploy to production
 
 on:
   push:
-    branches-ignore:
-      - master
 
 
 jobs:
   black:
     name: Black
     runs-on: ubuntu-latest
+    container: python:3.10
     steps:
-      - name: Setup Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: '3.10'
-          architecture: x64
-      - name: Checkout the latest code
-        uses: actions/checkout@v3
       - name: Install black
         run: pip install black
       - name: Checking...
@@ -56,7 +48,7 @@ jobs:
           python -m pip install --upgrade pip poetry
           poetry install --no-root
       - name: Run tests
-        run: poetry run pytest -c pytest.ini
+        run: poetry run pytest
 
 
 
