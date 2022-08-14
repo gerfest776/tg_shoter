@@ -44,16 +44,16 @@ jobs:
     name: Tests
     runs-on: ubuntu-latest
     env:
-      API_TOKEN: 5469389176:AAHzDrJXdWAuvCEBFIbVgaLkfF_ue-K3KEs
-      ADMIN: 412199751
-      PG_NAME: tgshot
-      PG_USER: tgshot
-      PG_PASSWORD: tgshot
-      PG_HOST: db
-      PG_PORT: 5432
-      POSTGRES_PASSWORD: tgshot
-      POSTGRES_USER: tgshot
-      POSTGRES_DB: tgshot
+      API_TOKEN: ${{ secrets.API_TOKEN }}
+      ADMIN: ${{ secrets.ADMIN }}
+      PG_NAME: ${{ secrets.PG_NAME }}
+      PG_USER: ${{ secrets.PG_USER }}
+      PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
+      PG_HOST: ${{ secrets.PG_HOST }}
+      PG_PORT: ${{ secrets.PG_PORT }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python 3.10
