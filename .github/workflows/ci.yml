@@ -68,6 +68,8 @@ jobs:
           docker-compose up -d
       - name: Run tests
         run: pytest -c pyproject.toml
+      - name: Get logs
+        run: docker-compose logs
 
 
 
