@@ -25,17 +25,17 @@ services:
       - "5432:5432"
     <<: *global
 
-#  bot:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    container_name: tgbot
-#    restart: always
-#    <<: *global
-#    ports:
-#      - "8000:8000/udp"
-#    depends_on:
-#      - db
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tgbot
+    restart: always
+    <<: *global
+    ports:
+      - "8000:8000/udp"
+    depends_on:
+      - db
 
 volumes:
   postgres_data:

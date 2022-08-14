@@ -5,6 +5,14 @@ on:
 
 
 jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: docker-compose build -d
+
   black:
     name: Black
     runs-on: ubuntu-latest
