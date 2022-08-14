@@ -22,11 +22,12 @@ class Screener:
         :return:
         """
         logger.info(f"Start screen url page {self.url}")
-        browser = await launch(
-            executablePath="/usr/bin/google-chrome-stable",
-            headless=True,
-            args=["--no-sandbox"],
-        )
+        # browser = await launch(
+        #     executablePath="/usr/bin/google-chrome-stable",
+        #     headless=True,
+        #     args=["--no-sandbox"],
+        # )
+        browser = await launch()
         page = await browser.newPage()
         await page.setViewport({"width": 1280, "height": 1280, "deviceScaleFactor": 0})
         await page.goto(self.url)
