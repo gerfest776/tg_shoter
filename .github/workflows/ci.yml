@@ -65,19 +65,12 @@ jobs:
           pip install --upgrade pip poetry
           poetry config virtualenvs.create false
           poetry install --no-dev
-          docker-compose up -d db
-      - name: Run tests
-#        run: pytest -c pyproject.toml
-        run: docker-compose logs
-
-      - name: Sleep for 30 seconds
-        run: sleep 30s
+          docker-compose up -d
+      - name: Sleep for 15 seconds
+        run: sleep 15s
         shell: bash
-
-      - name: Run tests2
-          #        run: pytest -c pyproject.toml
-        run: docker-compose logs
-
+      - name: Run tests
+        run: pytest -c pyproject.toml
 
 
 
