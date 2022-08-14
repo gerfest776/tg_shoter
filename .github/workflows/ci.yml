@@ -43,6 +43,7 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
+    container: python:3.10
     env:
       API_TOKEN: ${{ secrets.API_TOKEN }}
       ADMIN: ${{ secrets.ADMIN }}
@@ -54,18 +55,32 @@ jobs:
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
       POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
       POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+
+    services:
+      postgres:
+        image: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.10"
-      - name: Build
+      - name: Create table Database
+        run: |
+          psql tgshot tgshot
+          CREATE TABLE IF NOT EXISTS whois(
+          id SERIAL PRIMARY KEY,
+          ip INET,
+          url VARCHAR(256),
+          country VARCHAR(50),
+          city VARCHAR(100),
+          organization VARCHAR(100));
+      - name: Install dependency
         run: |
           pip install --upgrade pip poetry
           poetry config virtualenvs.create false
           poetry install --no-dev
-          docker-compose up -d
       - name: Get logs
         run: docker-compose logs
       - name: Run tests
