@@ -47,7 +47,7 @@ jobs:
           architecture: x64
       - name: Build
         run: |
-          docker-compose -d --build
+          docker-compose up -d --build
           docker container exec -it tgbot bash
       - name: Run tests
         run: poetry run pytest -c pyproject.toml
