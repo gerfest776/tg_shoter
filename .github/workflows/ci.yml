@@ -70,6 +70,14 @@ jobs:
 #        run: pytest -c pyproject.toml
         run: docker-compose logs
 
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash
+
+      - name: Run tests2
+          #        run: pytest -c pyproject.toml
+        run: docker-compose logs
+
 
 
 
