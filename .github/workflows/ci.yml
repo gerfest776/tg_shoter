@@ -14,7 +14,7 @@ jobs:
       - name: Install black
         run: pip install black
       - name: Checking...
-        run: black --check .
+        run: black --check . --max-line-length=101
 
   flake8:
     name: Flake8
