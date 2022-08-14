@@ -67,8 +67,8 @@ jobs:
           poetry install --no-dev
           docker-compose up -d db
       - name: Run tests
-        run: pytest -c pyproject.toml
-
+#        run: pytest -c pyproject.toml
+        run: docker ps
 
 
 
