@@ -66,7 +66,6 @@ jobs:
         ports:
           - 5432:5432
 
-
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v3
@@ -75,8 +74,6 @@ jobs:
           pip install --upgrade pip poetry
           poetry config virtualenvs.create false
           poetry install --no-dev
-      - name: Get logs
-        run: docker-compose logs
       - name: Run tests
         run: pytest -c pyproject.toml
 
