@@ -10,7 +10,7 @@ from handlers.groups.screen_groups import handle_link_message_groups
 
 @pytest.mark.asyncio
 async def test_group_screen_handle():
-    url = "https://www.google.com/"
+    url = "https://github.com"
     message_mock = AsyncMock(text=f"/screen {url}")
     await handle_link_message_groups(message_mock)
     assert isinstance(message_mock.method_calls[0].args[0], InputFile)
