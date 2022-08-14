@@ -3,7 +3,6 @@ name: deploy to production
 on:
   push:
 
-
 jobs:
   black:
     name: Black
@@ -17,41 +16,44 @@ jobs:
       - name: Checking...
         run: black --check .
 
-
   flake8:
     name: Flake8
     runs-on: ubuntu-latest
+    container: python:3.10
     steps:
-      - name: Setup Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: '3.10'
-          architecture: x64
       - name: Checkout the latest code
         uses: actions/checkout@v3
       - name: Install flake8
         run: pip install flake8
       - name: Run flake8
-        run: flake8 . --max-line-length=100
-
+        run: flake8 .
 
   tests:
     name: Tests
     runs-on: ubuntu-latest
+    container: python:3.10
     steps:
+      - name: Checkout the latest code
       - uses: actions/checkout@v3
-      - name: Setup Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: '3.10'
-          architecture: x64
       - name: Build
         run: |
-          cp .env.example .env
-          docker-compose up -d --build
-          docker container exec -i tgbot bash
+          poetry install --no-dev
+          docker-compose up -d db
       - name: Run tests
         run: pytest -c pyproject.toml
+        env:
+          API_TOKEN: 5469389176:AAHzDrJXdWAuvCEBFIbVgaLkfF_ue-K3KEs
+          ADMIN:  412199751
+          PG_NAME:  tgshot
+          PG_USER:  tgshot
+          PG_PASSWORD:  tgshot
+          PG_HOST: db
+          PG_PORT: 5432
+          POSTGRES_PASSWORD: tgshot
+          POSTGRES_USER: tgshot
+          POSTGRES_DB: tgshot
+
+
 
 
 
