@@ -31,7 +31,6 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
-    container: python:3.10
     env:
       API_TOKEN: 5469389176:AAHzDrJXdWAuvCEBFIbVgaLkfF_ue-K3KEs
       ADMIN: 412199751
@@ -44,8 +43,11 @@ jobs:
       POSTGRES_USER: tgshot
       POSTGRES_DB: tgshot
     steps:
-      - name: Checkout the latest code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10
       - name: Build
         run: |
           pip install --upgrade pip poetry
