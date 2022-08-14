@@ -79,13 +79,9 @@ jobs:
           poetry config virtualenvs.create false
           poetry install --no-dev
       - name: Install Chromium
-        run: |
-              curl -sSL https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
-              echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee -a /etc/apt/sources.list.d/google-chrome.list 
-              apt-get update && apt-get install -y google-chrome-stable --no-install-recommends 
-              groupadd chrome && useradd -g chrome -s /bin/bash -G audio,video chrome 
-              mkdir -p /home/chrome && chown -R chrome:chrome /home/chrome
-
+        uses: browser-actions/setup-chrome@latest
+        with:
+          chrome-version: beta
       - name: Run tests
         run: pytest -c pyproject.toml
 
