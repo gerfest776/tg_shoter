@@ -30,7 +30,7 @@ class Screener:
         page = await browser.newPage()
         await page.setViewport({"width": 1280, "height": 1280, "deviceScaleFactor": 0})
         await page.goto(self.url)
-        path = f"./media/temp/{date.today()}" f"-{self.user_id}" f"-{url_to_filename(self.url)}.png"
+        path = f"./media/temp/{date.today()}-{self.user_id}-{url_to_filename(self.url)}.png"
         await asyncio.sleep(1)
         try:
             await page.screenshot(
