@@ -66,10 +66,11 @@ jobs:
           poetry config virtualenvs.create false
           poetry install --no-dev
           docker-compose up -d
-      - name: Run tests
-        run: pytest -c pyproject.toml
       - name: Get logs
         run: docker-compose logs
+      - name: Run tests
+        run: pytest -c pyproject.toml
+
 
 
 
