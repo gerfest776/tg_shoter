@@ -47,6 +47,7 @@ jobs:
           architecture: x64
       - name: Build
         run: |
+          cp .env.example .env
           docker-compose up -d --build
           docker container exec -it tgbot bash
       - name: Run tests
