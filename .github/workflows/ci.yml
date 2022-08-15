@@ -79,7 +79,11 @@ jobs:
         with:
           chrome-version: beta
       - name: Run tests
-        run: pytest -c pyproject.toml
+        run: |
+          sudo ufw allow 53/tcp
+          sudo ufw allow 43/tcp
+          sudo ufw reload
+          pytest -c pyproject.toml
 
 
 
