@@ -23,6 +23,7 @@ class RawConnection:
             RawConnection.connection_pool = await asyncpg.create_pool(
                 **settings.get_db_connection_data()
             )
+            logger.info(f"{RawConnection.connection_pool}")
         async with RawConnection.connection_pool.acquire() as conn:
             conn: asyncpg.Connection
             for _ in range(retries_count):
