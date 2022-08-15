@@ -48,6 +48,8 @@ jobs:
         image: postgres
         env:
           POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+          POSTGRES_USER: postgres
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -73,6 +75,14 @@ jobs:
         uses: browser-actions/setup-chrome@latest
         with:
           chrome-version: beta
+      - name: Setup Database
+        run: psql -h postgres -U postgres -c 'CREATE TABLE IF NOT EXISTS whois(
+                                              id SERIAL PRIMARY KEY,
+                                              ip INET,
+                                              url VARCHAR(256),
+                                              country VARCHAR(50),
+                                              city VARCHAR(100),
+                                              organization VARCHAR(100));'
       - name: Run tests
         run: pytest -c pyproject.toml
 
