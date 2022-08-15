@@ -43,6 +43,7 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
+    container: python:3.10
     env:
       API_TOKEN: '${{ secrets.API_TOKEN }}'
       ADMIN: '${{ secrets.ADMIN }}'
@@ -69,11 +70,6 @@ jobs:
           --health-retries 5
 
     steps:
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.10"
-          architecture: x64
       - name: Checkout the latest code
         uses: actions/checkout@v3
       - name: Install dependency
