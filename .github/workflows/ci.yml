@@ -60,6 +60,11 @@ jobs:
         image: postgres
         env:
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Setup Python
@@ -79,11 +84,7 @@ jobs:
         with:
           chrome-version: beta
       - name: Run tests
-        run: |
-          sudo ufw allow 53/tcp
-          sudo ufw allow 43/tcp
-          sudo ufw reload
-          pytest -c pyproject.toml
+        run: pytest -c pyproject.toml
 
 
 
