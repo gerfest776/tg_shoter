@@ -19,6 +19,7 @@ class RawConnection:
         fetch: bool = False,
     ):
         if RawConnection.connection_pool is None:
+            logger.info(f"{settings.get_db_connection_data()}")
             RawConnection.connection_pool = await asyncpg.create_pool(
                 **settings.get_db_connection_data()
             )
