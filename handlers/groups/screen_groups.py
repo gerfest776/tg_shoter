@@ -16,7 +16,9 @@ async def handle_link_message_groups(msg: types.Message):
             InlineKeyboardButton(text="What i am able to?", callback_data="help_in_groups")
         )
         await msg.reply(
-            "Please, send correct url", parse_mode=ParseMode.MARKDOWN, reply_markup=reply_markup
+            "Please, send correct url",
+            parse_mode=ParseMode.MARKDOWN,
+            reply_markup=reply_markup,
         )
     else:
         await handle_link_message(msg)
@@ -25,6 +27,6 @@ async def handle_link_message_groups(msg: types.Message):
 @dp.callback_query_handler(text="help_in_groups")
 async def get_whois_of_page(query: CallbackQuery):
     await query.answer(
-        text="Just send me a link to get screenshot of your page!",
+        text="Just send me a link to get screenshot of your page!\nUse: /screen *url*",
         show_alert=True,
     )
