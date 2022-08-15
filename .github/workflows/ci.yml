@@ -43,25 +43,13 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
-    env:
-      API_TOKEN: '${{ secrets.API_TOKEN }}'
-      ADMIN: '${{ secrets.ADMIN }}'
-      PG_NAME: '${{ secrets.PG_NAME }}'
-      PG_USER: '${{ secrets.PG_USER }}'
-      PG_PASSWORD: '${{ secrets.PG_PASSWORD }}'
-      PG_HOST: '${{ secrets.PG_HOST }}'
-      PG_PORT: '${{ secrets.PG_PORT }}'
-      POSTGRES_PASSWORD: '${{ secrets.POSTGRES_PASSWORD }}'
-      POSTGRES_USER: '${{ secrets.POSTGRES_USER }}'
-      POSTGRES_DB: '${{ secrets.POSTGRES_DB }}'
-
     services:
       db:
         image: postgres
         env:
-          POSTGRES_PASSWORD: ${ env.POSTGRES_PASSWORD }
-          POSTGRES_USER: ${ env.POSTGRES_USER }
-          POSTGRES_DB: ${ env.POSTGRES_DB }
+          POSTGRES_PASSWORD: ${ secrets.POSTGRES_PASSWORD }
+          POSTGRES_USER: ${ secrets.POSTGRES_USER }
+          POSTGRES_DB: ${ secrets.POSTGRES_DB }
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -89,7 +77,5 @@ jobs:
           chrome-version: beta
       - name: Run tests
         run: pytest -c pyproject.toml
-
-
 
 
