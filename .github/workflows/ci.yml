@@ -76,7 +76,7 @@ jobs:
         with:
           chrome-version: beta
       - name: Setup Database
-        run: psql -h postgres -U postgres -c 'CREATE TABLE IF NOT EXISTS whois(
+        run: psql -h 0.0.0.0 -U postgres -c 'CREATE TABLE IF NOT EXISTS whois(
                                               id SERIAL PRIMARY KEY,
                                               ip INET,
                                               url VARCHAR(256),
