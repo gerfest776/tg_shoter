@@ -45,8 +45,11 @@ jobs:
             git reset --hard origin/master
             git pull --rebase origin HEAD
             
+            var=$(ls -la)
+            echo $var
+            
             echo "Up project"
-            docker-compose -f docker-compose.yml up -d
+            docker-compose up -d
 
 
 
