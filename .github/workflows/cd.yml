@@ -1,0 +1,52 @@
+name: continuous deployment
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set env
+        run: echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+      - uses: rlespinasse/github-slug-action@3.5.1
+
+      - name: Deploy to production
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+
+          command_timeout: 30m
+          script: |
+            export VERSION="${{ env.VERSION }}"
+            export API_TOKEN="${{ secrets.API_TOKEN }}"
+            export ADMIN="${{ secrets.ADMIN }}"
+            export PG_NAME="${{ secrets.PG_NAME }}"
+            export PG_USER="${{ secrets.PG_USER }}"
+            export PG_PASSWORD="${{ secrets.PG_PASSWORD }}"
+            export PG_HOST="${{ secrets.PG_HOST }}"
+            export PG_PORT="${{ secrets.PG_PORT }}"
+            export POSTGRES_PASSWORD="${{ secrets.POSTGRES_PASSWORD }}"
+            export POSTGRES_USER="${{ secrets.POSTGRES_USER }}"
+            export POSTGRES_DB="${{ secrets.POSTGRES_DB }}"
+            
+            cd ${{ secrets.PROJECT_DIR }}
+            
+            echo "Pulling project..."
+            git checkout -f HEAD
+            git reset --hard origin/master
+            git pull --rebase origin HEAD
+            
+            echo "Up project"
+            docker-compose -f docker-compose.yml up -d
+
+
+
