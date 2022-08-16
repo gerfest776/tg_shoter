@@ -16,7 +16,7 @@ jobs:
       - name: Checking...
         run: black --check .
       - name: ssh
-        run: echo ${{ secrets.SSH_KEY }}
+        run: echo 2
 
   flake8:
     name: Flake8
