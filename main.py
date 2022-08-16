@@ -1,3 +1,5 @@
+from loguru import logger
+
 from core.db.tables import database
 
 
@@ -13,6 +15,8 @@ async def on_startup(dp):
 
 
 if __name__ == "__main__":
+    logger.success("Start with cd")
+
     from aiogram import executor
 
     from handlers import dp
