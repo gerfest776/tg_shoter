@@ -15,7 +15,7 @@ async def on_startup(dp):
 
 
 if __name__ == "__main__":
-    logger.success("Start with cd")
+    logger.success("Start with cd v2")
 
     from aiogram import executor
 
